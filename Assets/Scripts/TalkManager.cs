@@ -25,6 +25,11 @@ public class TalkManager : MonoBehaviour
         talkData.Add(200, new string[] { "묘하게 예쁜 돌이다.", "그냥..돌이다" });
         talkData.Add(400, new string[] { "나무 테이블이다", "예쁜 테이블이다" });
 
+        //Quest Talk
+        talkData.Add(10 + 1000, new string[] { "어서오쇼:0", "첨보는 얼굴이네..:1","그 이야기는 ㅡ루ㅡ라는 사람에게 가봐:1","어디있냐고?:2","니가 알아서 찾아!!:3" });
+        talkData.Add(20 + 2000, new string[] { "...:0", "...:0", "..뭘봐:1","그건...알겠어:0", "먼저 동전좀 찾아줘:1" });
+        talkData.Add(30 + 2000, new string[] { "좋아:0", "그럼 잘 들어:1" });
+
         portraitData.Add(1000 + 0, portraitArr[0]);//기본 
         portraitData.Add(1000 + 1, portraitArr[1]);//말하기
         portraitData.Add(1000 + 2, portraitArr[2]);//웃음
