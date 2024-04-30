@@ -76,7 +76,7 @@ public class PlayerAction : MonoBehaviour
         //Move
         Vector2 moveVec = isHorizonMove ? new Vector2(h, 0) :
             new Vector2(0, v);
-        rigid.velocity = moveVec * 2;
+        rigid.velocity = moveVec * 4;
         
 
 

@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     public QuestManager questManager;
     public int talkIndex;
     public Image portraitImg;
+
+    private void Start()
+    {
+        Debug.Log(questManager.CheckQuest());
+    }
     public void Action(GameObject scanObj)
     {
         
