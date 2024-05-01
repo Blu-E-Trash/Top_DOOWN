@@ -19,7 +19,7 @@ public class TalkManager : MonoBehaviour
     void GenerateData()
     {
         talkData.Add(1000, new string[] { "안녕:0", "처음보는 얼굴이네:1" });
-        talkData.Add(2000, new string[] { "....:3", "...:3", "..뭐:3", "..뭘봐:3" });
+        talkData.Add(2000, new string[] { "....:3", "...:3", "..뭐:2", "..뭘봐:3" });
         talkData.Add(100, new string[] { "그저 박스다", "특별함 없는 나무상자다" });
         talkData.Add(300, new string[] { "예쁜 집이다.", "함부로 들어가지 말자" });
         talkData.Add(200, new string[] { "묘하게 예쁜 돌이다.", "그냥..돌이다" });
