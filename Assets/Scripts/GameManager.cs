@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Animator talkPanel;
+    public GameObject menuSet;
     public TypeEffect talk;
     public GameObject scanObject;
     public bool isAction;
@@ -15,10 +16,23 @@ public class GameManager : MonoBehaviour
     public Image portraitImg;
     public Animator portraitAnim;
     public Sprite prevPortrait;
+    public Text questText;
+    public GameObject player;
 
-    private void Start()
+    void Start()
     {
-        Debug.Log(questManager.CheckQuest());
+        GameLoad();
+        questText.text = questManager.CheckQuest();
+    }
+    void Update()
+    {
+        //Sub Menu
+        if (Input.GetButtonDown("Cancel")){
+            if (menuSet.activeSelf)
+                menuSet.SetActive(false);
+            else
+                menuSet.SetActive(true);
+        }
     }
     public void Action(GameObject scanObj)
     {
@@ -48,7 +62,7 @@ public class GameManager : MonoBehaviour
         if (talkData == null) { 
             isAction = false;
             talkIndex = 0;
-            Debug.Log(questManager.CheckQuest(id));
+            questText.text = questManager.CheckQuest(id);
             return;
         }
         //Continue Talk
@@ -75,5 +89,39 @@ public class GameManager : MonoBehaviour
         isAction = true;
         talkIndex++;
     }
+    
+    public void GameSave()
+    {//간단한 데이터 저장 기능을 지원하는 클래스
+        //player.x
+        PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
+        //player.y
+        PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
+        //Quest Id
+        PlayerPrefs.SetInt("QuestId", questManager.questId);
+        //Quest Action Index
+        PlayerPrefs.SetInt("QuestActionIndex", questManager.questActionIndex);
+        PlayerPrefs.Save();
 
+        menuSet.SetActive(false);
+    }
+    public void GameLoad()
+    {
+        if (!PlayerPrefs.HasKey("QuestActionIndex"))
+        {
+            return;
+        }
+
+        float x = PlayerPrefs.GetFloat("PlayerX");
+        float y = PlayerPrefs.GetFloat("PlayerY");
+        int questId = PlayerPrefs.GetInt("QuestId");
+        int questActionIndex = PlayerPrefs.GetInt("QuestActionIndex");
+        
+        player.transform.position = new Vector3(x, y, 0);
+        questManager.questId = questId;
+        questManager.questActionIndex = questActionIndex;
+    }
+    public void GameExit()
+    {
+        Application.Quit();
+    }
 }
